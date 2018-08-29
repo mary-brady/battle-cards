@@ -1,11 +1,20 @@
 <template>
   <div class="home">
     <form @submit.prevent="startGame">
-      <input type="text" placeholder="Enter Your Name" v-model="newGame.playerName">
+      <input type="text" placeholder="Enter Your Name">
+      <input type="submit">
+      <!-- v-model="newGame.playerName" -->
       </form>
       <div id="row">
-        <Opponent/>
-          <Player/>
+        <div class="col-12">
+        <Opponent />
+        </div>
+        </div>
+
+      <div id="row">
+        <div class="col-12">
+        <Player />
+        </div>
       </div>
  
   </div>
