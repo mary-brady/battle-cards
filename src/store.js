@@ -11,11 +11,15 @@ let cardApi = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    game: {}
+    game: {},
+    activeCard: {}
   },
   mutations: {
     setGame(state, data) {
       state.game = data
+    },
+    setActiveCard(state, card) {
+      state.activeCard = card
     }
   },
   actions: {
@@ -25,7 +29,9 @@ export default new Vuex.Store({
           console.log(res.data)
           commit('setGame', res.data)
         })
-
+    },
+    setActiveCard({ commit, dispatch }, activeCard) {
+      commit('setActiveCard', activeCard)
     }
   }
 })

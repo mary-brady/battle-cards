@@ -2,7 +2,7 @@
   <div class="player-view">
       <p>{{myPlayer.name}}</p>
       <div v-for="card in myPlayer.hand" :key="card.name">
-        <div class="card" style="width: 10rem;">
+        <div class="card" style="width: 10rem;" @click="setActiveCard(card.id)">
           <img class="card-img-top" :src="card.img" alt="">
       <div class="card-body">
         <h5 class="card-title"><b>{{card.name}}</b></h5>
@@ -13,6 +13,9 @@
     <li class="list-group-item"><b>Defense</b>: {{card.defense}}</li>
   </ul>
 </div> 
+    </div>
+    <div>
+    <button>Play Card</button>
     </div>
     </div>
 </template>
@@ -30,6 +33,11 @@ export default {
       }
       return;
     }
+  },
+  methods: {
+    setActiveCard(card) {
+      this.$store.dispatch("setActiveCard", card);
+    }
   }
 };
 </script>
@@ -38,5 +46,6 @@ export default {
 .player-view {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div class="opponent-view">
-    <div>
       {{myOpponent.name}}
       <div v-for="card in myOpponent.hand" :key="card.name">
         <div class="card" style="width: 10rem;">
@@ -15,8 +14,10 @@
   </ul>
 </div> 
     </div>
+<div>
+    <button>Play Card</button>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -37,5 +38,6 @@ export default {
 .opponent-view {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 </style>
