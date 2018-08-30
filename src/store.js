@@ -55,6 +55,6 @@ export default new Vuex.Store({
           console.log(res.data)
           dispatch('getGame', state.game.id)
         })
-    }
+    },
   }
 })
