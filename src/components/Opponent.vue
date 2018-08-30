@@ -1,6 +1,7 @@
 <template>
     <div class="opponent-view">
-      {{myOpponent.name}}
+      <p>{{myOpponent.name}}</p>
+      <p>Remaining Cards: {{myOpponent.remainingCards}}</p>
       <div v-for="card in myOpponent.hand" :key="card.name">
         <div class="card" style="width: 10rem;">
           <img class="card-img-top" :src="card.img" alt="">
@@ -13,11 +14,9 @@
     <li class="list-group-item"><b>Defense</b>: {{card.defense}}</li>
   </ul>
 </div> 
+    <button @click="setOpponentCard(card)">Play Card</button>
     </div>
-<div>
-    <button>Play Card</button>
-    </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -29,6 +28,11 @@ export default {
   computed: {
     myOpponent() {
       return this.$store.state.game.players[1];
+    }
+  },
+  methods: {
+    setOpponentCard(card) {
+      this.$store.dispatch("setOpponentCard", card);
     }
   }
 };

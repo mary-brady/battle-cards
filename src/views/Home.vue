@@ -1,20 +1,26 @@
 <template>
-  <div class="home">
-    <form v-on:submit.prevent="startGame">
-      <input type="text" placeholder="Enter Your Name" v-model="newGame.playerName">
+  <div class="home container-fluid">
+    <div v-if="!game.id">
+      <form @submit.prevent="startGame">
+        <input type="text" placeholder="Enter Your Name" v-model="newGame.playerName">
       </form>
+    </div>
+    <div v-if="game.id">
       <div id="row">
         <div class="col-12">
-        <Opponent />
-        </div>
-        </div>
-<hr />
-      <div id="row">
-        <div class="col-12">
-        <Player />
+          <Opponent />
         </div>
       </div>
- 
+      <hr />
+      <div>
+        <button @click="fight">Fight!</button>
+      </div>
+      <div id="row">
+        <div class="col-12">
+          <Player />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,13 +36,7 @@ export default {
       newGame: {
         playerName: "",
         opponents: 1,
-        set: 1
-      },
-      fightData: {
-        playerId: this.game.players[0].id,
-        opponentId: this.game.players[1].id,
-        playerCardId: "",
-        oponnentCardId: ""
+        set: 2
       }
     };
   },
@@ -49,7 +49,15 @@ export default {
     startGame() {
       this.$store.dispatch("gameStart", this.newGame);
     },
-    fight() {}
+    fight() {
+      let fightData = {
+        playerId: this.game.players[0].id,
+        opponentId: this.game.players[1].id,
+        playerCardId: this.$store.state.activeCard,
+        opponentCardId: this.$store.state.opponentCard
+      };
+      this.$store.dispatch("fight", fightData);
+    }
   },
   components: {
     Opponent,
