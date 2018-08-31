@@ -28,9 +28,6 @@
                 </div>
             </div>
         </div>
-        <div v-if="myOpponent.winner == true">
-            <p>{{myOpponent.name}} Wins!</p>
-        </div>
     </div>
 </template>
 

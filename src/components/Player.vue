@@ -27,9 +27,6 @@
       </div>
   </div>
   </div>
-  <div v-if="myPlayer.winner == true">
-    <p>{{myPlayer.name}} Wins!</p>
-    </div>
   </div>
 </template>
 
